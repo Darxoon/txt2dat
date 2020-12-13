@@ -5,7 +5,7 @@ Converts semi-machine-readable data into a machine-readable xml ROM datfile snip
 e.g.
 ```
 CRC32: a
-md5: b
+md5: B
 sha-256: c
 sha1: d
 size: 123456
@@ -22,3 +22,4 @@ As you can see, it can cope with somewhat inconsistent formatting.
 ## Todo
 
 * Code needs refactoring
+* Add checks for correct length and characters in size and hashes
