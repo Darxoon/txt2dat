@@ -3,7 +3,7 @@ Converts semi-machine-readable key-pair hash data into a machine-readable xml RO
 
 
 e.g.
-```shell
+```
 $ txt2dat
 CRC32: a
 md5: B
@@ -13,13 +13,13 @@ size: 123456
 
 or
 
-```shell
+```
 $ cat hashes.txt | txt2dat
 ```
 
 outputs
 
-```shell
+```
 <game><rom size="123456" crc="A" md5="B" sha1="D" sha256="C" /></game>
 ```
 
