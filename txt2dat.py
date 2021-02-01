@@ -80,10 +80,9 @@ def text_to_dict(text):
             mydict[key] = value
     return mydict
 
-def main(text):
+def main(lines_list):
     CORRECT_FIELD_ORDER = ['size', 'crc', 'md5', 'sha1', 'sha256']
-    text_split = text.splitlines()
-    mydict = text_to_dict(text_split)
+    mydict = text_to_dict(lines_list)
     for key in CORRECT_FIELD_ORDER:
         try:
             mydict[key] = mydict.pop(key)
@@ -93,5 +92,16 @@ def main(text):
     return(xml)
     
 if __name__ == '__main__':
-    text = pyperclip.paste()
-    pyperclip.copy(main(text))
+    if stdin.isatty():
+        lines_list = []
+        while True:
+            try:
+                line = input()
+            except EOFError:
+                break
+            lines_list.append(line)
+        print(main(lines_list))
+    else:
+        lines_list = stdin.read().splitlines()
+        print(lines_list)
+
