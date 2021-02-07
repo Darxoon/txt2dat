@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from sys import argv, stdin
 import pyperclip
 import detect_delimiter
@@ -103,5 +104,5 @@ if __name__ == '__main__':
         print(main(lines_list))
     else:
         lines_list = stdin.read().splitlines()
-        print(lines_list)
+        print(main(lines_list))
 
