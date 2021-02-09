@@ -26,7 +26,7 @@ outputs
 
 ## Todo
 
-* Code needs refactoring
-* Add checks for correct length and characters in size and hashes
-* Warn on missing fields
-* Add way to force fields using argument (e.g. force name)
+- [ ] Code needs refactoring
+- [ ] Add checks for correct length and characters in size and hashes
+- [ ] Warn on missing fields
+- [X] Add way to force fields using argument (e.g. force name)

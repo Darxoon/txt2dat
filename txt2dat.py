@@ -21,6 +21,17 @@ FIELD_MODE_TESTS = {'field_mode__size' : \
                     'field_mode__sha256' : \
                     [['sha256', 'sha-256', 'sha256sum'],'sha256']}
 
+argv_name_enabled = False
+argv_ext_enabled = False
+if len(argv) == 3:
+    argv_last = argv[-1]
+    if argv[-2] == '-n':
+        argv_name_value = argv_last
+        argv_name_enabled = True
+    if argv[-2] == '-e':
+        argv_ext_value = argv_last
+        argv_ext_enabled = True
+
 def dict_to_xml(mydict):
     game = Element('game')
     subelement = SubElement(game, 'rom')
@@ -82,13 +93,19 @@ def text_to_dict(text):
     return mydict
 
 def main(lines_list):
-    CORRECT_FIELD_ORDER = ['size', 'crc', 'md5', 'sha1', 'sha256']
+    CORRECT_FIELD_ORDER = ['name', 'size', 'crc', 'md5', 'sha1', 'sha256']
     mydict = text_to_dict(lines_list)
     for key in CORRECT_FIELD_ORDER:
         try:
             mydict[key] = mydict.pop(key)
         except KeyError:
-            pass
+            if key == 'name':
+                if argv_name_enabled:
+                    mydict['name'] = argv_name_value
+                elif argv_ext_enabled:
+                    mydict['name'] = 'dummy_name.{}'.format(argv_ext_value)
+            else:
+                pass
     xml = dict_to_xml(mydict)
     return(xml)
     
