@@ -110,7 +110,7 @@ def main(lines_list):
     return(xml)
     
 if __name__ == '__main__':
-    if stdin.isatty():
+    if not stdin.isatty():
         lines_list = []
         while True:
             try:
